@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2>Submit Info</h2>
+
+<form id="myForm">
+  First name: <input id="f1"><br>
+  Second name: <input id="f2"><br>
+  Email: <input id="email"><br>
+  Phone: <input id="phone"><br>
+  Eircode: <input id="eircode"><br><br>
+  <button type="button" onclick="submitData()">Submit</button>
+</form>
+
+<script>
+function submitData() {
+
+    let f1 = document.getElementById("f1").value;
+    let f2 = document.getElementById("f2").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let eir = document.getElementById("eircode").value;
+
+    // validation
+    if (!/^[A-Za-z0-9]{1,20}$/.test(f1)) return alert("Invalid first name");
+    if (!/^[A-Za-z0-9]{1,20}$/.test(f2)) return alert("Invalid second name");
+    if (!/^\S+@\S+\.\S+$/.test(email)) return alert("Invalid email");
+    if (!/^\d{10}$/.test(phone)) return alert("Phone must be 10 digits");
+    if (!/^[0-9][A-Za-z0-9]{5}$/.test(eir)) return alert("Invalid eircode");
+
+    fetch("http://localhost:3000/submit", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ f1, f2, email, phone, eir })
+    }).then(r => r.text()).then(alert);
+}
+</script>
+</body>
+</html>
