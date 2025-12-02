@@ -49,3 +49,18 @@ app.get("/upload-csv", (req, res) => {
             res.send("CSV processed");
         });
 });
+
+app.post("/submit", (req, res) => {
+    const { f1, f2, email, phone, eir } = req.body;
+
+    // Insert
+    db.query(
+        "INSERT INTO mysql_table (first_name, second_name, email, phone, eircode) VALUES (?,?,?,?,?)",
+        [f1, f2, email, phone, eir],
+        (err) => {
+            if (err) return res.send("DB error");
+            res.send("Saved!");
+        }
+    );
+});
+
