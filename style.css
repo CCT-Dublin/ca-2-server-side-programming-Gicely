@@ -1,0 +1,190 @@
+/* Reset-ish basics */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Page background and central container */
+body {
+  background: linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+  color: #222;
+  line-height: 1.45;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;   /* ⬅ importante */
+  align-items: center;
+  padding-top: 20px;        /* pequeno espaçamento */
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Title */
+.container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #0f1724;
+  text-align: center;
+}
+
+/* Small description / help text */
+.container p.help {
+  color: #556074;
+  font-size: 0.9rem;
+  margin-bottom: 18px;
+}
+
+/* Form layout: use grid for neat spacing */
+form#myForm {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1fr; /* two-column layout on larger screens */
+}
+
+/* Each label+input group spans full width — use .full for two-column override */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* .full class to make a field occupy both columns (e.g. email) */
+.form-row.full {
+  grid-column: 1 / -1;
+}
+
+/* Labels */
+.form-row label {
+  font-size: 0.85rem;
+  color: #344055;
+}
+
+/* Inputs / selects */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(40, 50, 75, 0.08);
+  outline: none;
+  background: #fbfdff;
+  font-size: 0.95rem;
+  transition: box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+/* Focus state */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(34, 120, 255, 0.18);
+  box-shadow: 0 4px 18px rgba(34,120,255,0.06);
+}
+
+/* Button styles */
+.button-row {
+  grid-column: 1 / -1; /* full width */
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+button.primary {
+  background: linear-gradient(90deg,#2563eb,#4f46e5);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(79,70,229,0.12);
+  transition: transform 0.08s ease, opacity 0.12s ease;
+}
+
+button.primary:active { transform: translateY(1px); }
+button.primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Secondary button */
+button.secondary {
+  background: transparent;
+  border: 1px solid rgba(40,50,75,0.08);
+  color: #23324a;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Error / success messages */
+.message {
+  grid-column: 1 / -1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.error {
+  background: #fff5f5;
+  color: #9b1c1c;
+  border: 1px solid rgba(155,28,28,0.08);
+}
+
+.success {
+  background: #f5fff7;
+  color: #0b6b28;
+  border: 1px solid rgba(11,107,40,0.08);
+}
+
+/* Small helper text under inputs */
+.helper {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Table for showing CSV results or server responses */
+.table-wrap {
+  margin-top: 18px;
+  overflow-x: auto;
+  grid-column: 1 / -1;
+}
+
+table.results {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+table.results th,
+table.results td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(35,50,80,0.04);
+}
+
+table.results th {
+  background: rgba(20,25,40,0.02);
+  font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 720px) {
+  form#myForm {
+    grid-template-columns: 1fr; /* single column on small screens */
+  }
+  .button-row {
+    justify-content: stretch;
+    flex-direction: column;
+  }
+  button.primary, button.secondary {
+    width: 100%;
+  }
+}
