@@ -1,0 +1,17 @@
+{
+  "name": "assignment-project",
+  "version": "1.0.0",
+  "description": "CSV validation, form + DB insertion demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",        
+    "dev": "nodemon index.js"       
+  },
+   "dependencies": {
+    "body-parser": "^1.20.0",       
+    "cors": "^2.8.5",               
+    "csv-parser": "^3.0.0",         
+    "express": "^4.18.0",           
+    "mysql2": "^2.3.3"              
+  }
+}
