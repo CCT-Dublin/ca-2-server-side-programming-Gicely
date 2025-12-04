@@ -64,3 +64,21 @@ app.post("/submit", (req, res) => {
     );
 });
 
+function clean(input) {
+    return input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+app.post("/submit", (req, res) => {
+    const f1 = clean(req.body.f1);
+    const f2 = clean(req.body.f2);
+    const email = clean(req.body.email);
+    const phone = clean(req.body.phone);
+    const eir = clean(req.body.eir);
+
+    db.query(
+        "INSERT INTO mysql_table (first_name, second_name, email, phone, eircode) VALUES (?,?,?,?,?)",
+        [f1, f2, email, phone, eir],
+        () => res.send("Saved with XSS protection!")
+    );
+});
+
